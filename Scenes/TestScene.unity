@@ -819,6 +819,8 @@ MonoBehaviour:
   NormalShader: {fileID: 4800000, guid: cde2a25d64a00134da2c428e06383297, type: 3}
   Sensitivity: 20
   ColorGradient: {fileID: 2800000, guid: 6f5a705980d77e84c9f0bf82fd7e543e, type: 3}
+  ThermalCamera: {fileID: 864610117}
+  ClassicCamera: {fileID: 963194227}
 --- !u!1 &1784522940
 GameObject:
   m_ObjectHideFlags: 0

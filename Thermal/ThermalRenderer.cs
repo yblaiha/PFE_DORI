@@ -9,11 +9,14 @@ public class ThermalRenderer : MonoBehaviour
     public Shader NormalShader;
     public float Sensitivity;
     public Texture2D ColorGradient;
+    public Camera ThermalCamera;
+    public Camera ClassicCamera;
 
     // Start is called before the first frame update
-    void OnEnable()
+    void Start()
     {
-        GetComponent<Camera>().SetReplacementShader(NormalShader, "RenderType");
+        ClassicCamera.SetReplacementShader(NormalShader, "RenderType");
+        ThermalCamera.backgroundColor = ColorGradient.GetPixel(0,0);
     }
 
     public Shader GetShader(){ return ThermalShader;}

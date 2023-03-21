@@ -36,10 +36,22 @@ light_blue = np.array((100,20,120))
 dark_red = np.array((200,50,80))
 yellow = np.array((220,220,0))
 white = np.array((255,255,245))
-im = GenerateGradientImage([dark_blue,dark_blue2,dark_blue3,light_blue,dark_red,yellow,white,white],(100,100,3))
+classic_grad = [dark_blue,dark_blue2,dark_blue3,light_blue,dark_red,yellow,white,white]
+
+black = np.array((0,0,0))
+almost_black = np.array((20,20,20))
+grey = np.array((170,170,170))
+black_n_white_grad = [black,almost_black,grey,white]
+
+dark_green = np.array((20,80,50))
+green = np.array((50,200,80))
+bright_green = np.array((120,250,150))
+black_n_green_grad = [black,black,(black+dark_green)/2,dark_green,(dark_green+green)/2,green,bright_green]
+
+im = GenerateGradientImage(black_n_green_grad,(100,100,3))
 im = cv2.blur(im,(8,8))
 plt.imshow(im, interpolation='nearest')
 plt.show()
 
 
-matplotlib.image.imsave('UnityCours\My Project\Assets\Thermal\GradText.png', im)
+matplotlib.image.imsave('UnityCours\My Project\Assets\Thermal\BlackGreenGradient.png', im)
