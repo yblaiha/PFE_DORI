@@ -39,11 +39,11 @@ namespace Dori
         }
 
         void Update(){
-            float x = 30.0f;
+            /* float x = 30.0f;
             float y = 1.0f;
             float z = 0.0f;
             Vector3 point = new Vector3(x, y, z);
-            GoTo_Drone(point);
+            GoTo_Drone(point); */
 
         }
        
