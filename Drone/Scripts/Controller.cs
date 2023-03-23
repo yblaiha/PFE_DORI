@@ -12,7 +12,7 @@ namespace Dori
         #region variables
         [Header("Control Properties")]
         public float minMaxPitch = 30f;
-        public float minMaxRoll = 30f;
+        public float minMaxRoll = 50f;
         public float yawMax = 15f;
 
         public float lerpSpeed = 2f;
@@ -27,7 +27,7 @@ namespace Dori
         #endregion
 
         #region Main methods
-        // Start is called before the first frame update
+
         void Start()
         {
             move = GetComponent<Drone_movement>();
@@ -49,9 +49,7 @@ namespace Dori
 
         protected virtual void HandleEngines()
         {
-            // Auto Hover 
-            //rb.AddForce(Vector3.up * (rb.mass * Physics.gravity.magnitude));
-            // Loop throug heach engine 
+            // Loop through each engine 
             foreach(I_Engine engine in engines)
             {
                 engine.UpdateEngine(rb , move);
@@ -61,12 +59,12 @@ namespace Dori
         protected virtual void HandleControls()
         {
             float pitch = move.Cyclic.y * minMaxPitch;
-            float roll = -move.Cyclic.x * minMaxRoll;
+            float roll = move.Cyclic.x * minMaxRoll;
             yaw += move.Pedals * yawMax;
 
             finalPitch = Mathf.Lerp(finalPitch, pitch, Time.deltaTime * lerpSpeed);
-            finalRoll = Mathf.Lerp(finalPitch, roll, Time.deltaTime * lerpSpeed);
-            finalYaw = Mathf.Lerp(finalPitch, yaw, Time.deltaTime * lerpSpeed);
+            finalRoll = Mathf.Lerp(finalRoll, roll, Time.deltaTime * lerpSpeed);
+            finalYaw = Mathf.Lerp(finalYaw, yaw, Time.deltaTime * lerpSpeed);
 
             // Rotations 
             Quaternion rot = Quaternion.Euler(finalPitch, finalYaw, finalRoll);
