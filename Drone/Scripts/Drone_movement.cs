@@ -46,7 +46,7 @@ namespace Dori
         }
         private void OnThrottle(InputValue value)
         {
-            throttle = value.Get<float>();
+            throttle = -value.Get<float>();
         }
 
 
