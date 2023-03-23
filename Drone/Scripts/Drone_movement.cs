@@ -22,18 +22,22 @@ namespace Dori
        
 
         #region Input
-        private void setCyclic(Vector2 value)
+        
+        public void setCyclic(Vector2 value)
         {
-            cyclic = value;
+            cyclic.x = value.x;
+            cyclic.y = value.y;
         }
-        private void setPedals(float value)
+
+        public void setPedals(float value)
         {
             pedals = value;
         }
-        private void setThrottle(float value)
+        
+        public void setThrottle(float value)
         {
             throttle = value;
-        }
+        } 
 
 
         private void OnCyclic(InputValue value)
