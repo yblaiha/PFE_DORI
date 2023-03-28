@@ -25,7 +25,7 @@ public class Lidar_ : MonoBehaviour
             CastRays();
         }
     }
-
+   
     void CastRays()
     {
         for (int i = 0; i < numRays; i++)
@@ -43,12 +43,10 @@ public class Lidar_ : MonoBehaviour
                 {
                     Vector3 hitPoint = hit.point;
                     float distance = hit.distance;
-                    // store hitPoint and distance
                 }
 
                 Debug.DrawRay(transform.position, rayDirection*maxRange, Color.green);
             }
         }
-        // generate 3D point cloud based on hitPoints and distances
     }
 }

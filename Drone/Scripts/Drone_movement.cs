@@ -10,6 +10,7 @@ namespace Dori
     {
 
         #region Variables
+            // Define the drone's axis
             private Vector2 cyclic;
             private float pedals;
             private float throttle;

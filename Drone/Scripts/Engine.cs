@@ -27,7 +27,7 @@ namespace Dori
 
             public void UpdateEngine(Rigidbody rb, Drone_movement move)
             {
-                // Debug.Log("Update Engine" + gameObject.name);
+                
                 Vector3 upVec = transform.up;
                 upVec.x = 0f;
                 upVec.z = 0f;
@@ -36,7 +36,10 @@ namespace Dori
                 float finalDiff = Physics.gravity.magnitude * diff;
 
                 Vector3 engineForce = Vector3.zero;
-                // Divide by 4 engines 
+
+                // Calculate the engine force by adding the weight of the drone (mass * gravity)
+                // to the final difference and multiplying it by the throttle and max power,
+                // then dividing by 4 engines
                 engineForce = transform.up * ((rb.mass * Physics.gravity.magnitude + finalDiff) + (move.Throttle * maxPower)) / 4f;
                 rb.AddForce(engineForce, ForceMode.Force);
                 HandlePropellers(move.Throttle);

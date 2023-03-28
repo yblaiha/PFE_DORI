@@ -5,6 +5,8 @@ using System.Linq;
 
 namespace Dori
 {
+    // This class inherits from Base_Rigidbody_Drone and
+    // adds control functionality to the drone
     [RequireComponent(typeof(Drone_movement))]
     public class Controller : Base_Rigidbody_Drone
     {
@@ -33,13 +35,16 @@ namespace Dori
         void Start()
         {
             move = GetComponent<Drone_movement>();
+            // Get a list of all the I_Engine components that are children
             engines = GetComponentsInChildren<I_Engine>().ToList<I_Engine>();
             if(engines?.Any() != true)
                 Debug.Log("Empty list");
         }
 
         void Update(){
-            /* float x = 30.0f;
+            /* 
+            // Example code for testing purposes
+            float x = 30.0f;
             float y = 1.0f;
             float z = 0.0f;
             Vector3 point = new Vector3(x, y, z);
@@ -57,6 +62,7 @@ namespace Dori
             HandleControls();
         }
 
+         // This method updates each engine component in the list of engines
         protected virtual void HandleEngines()
         {
             // Loop through each engine 
@@ -66,21 +72,25 @@ namespace Dori
             }
         }
 
+        // This method handles the movement controls of the drone
         protected virtual void HandleControls()
         {
+            // Calculate the pitch, roll, and yaw values based on the input
             float pitch = move.Cyclic.y * minMaxPitch;
             float roll =-move.Cyclic.x * minMaxRoll;
             yaw += move.Pedals * yawMax;
-
+            
+            // Smoothly interpolate the pitch, roll, and yaw values
             finalPitch = Mathf.Lerp(finalPitch, pitch, Time.deltaTime * lerpSpeed);
             finalRoll = Mathf.Lerp(finalRoll, roll, Time.deltaTime * lerpSpeed);
             finalYaw = Mathf.Lerp(finalYaw, yaw, Time.deltaTime * lerpSpeed);
 
-            // Rotations 
+            // Calculate drone rotation based on the pitch, yaw, and roll
             Quaternion rot = Quaternion.Euler(finalPitch, finalYaw, finalRoll);
             rb.MoveRotation(rot);
         }
 
+        // This method verifies if the drone have reached destination
         public bool ReachedDestination(Vector3 waypoint, float threshold = 0.1f)
         {
             float distanceToWaypoint = Vector3.Distance(transform.position, waypoint);
@@ -120,13 +130,11 @@ namespace Dori
             float angleToDestination = Vector2.SignedAngle(Vector2.right, droneToDestination);
             float currentRobotAngle = Vector2.SignedAngle(Vector2.right, new Vector2(transform.forward.x, transform.forward.z));
             float angleDifference = Mathf.DeltaAngle(currentRobotAngle, angleToDestination);
+            
             float yaw = 0f; 
             float roll = 0f;
             float pitch = 0f;
-            // Set the yaw, roll, and pitch based on the angle difference and the distance to the destination point
-            //float yaw = (angleDifference == 0) ? -Mathf.Sign(angleDifference) * 0.4f : 0f;
-            //float roll = (angleDifference == 0 && ReachedDestination(destinationPoint)) ? 0f : 0f;
-            //float pitch = (angleDifference == 0 && !ReachedDestination(destinationPoint)) ? 0.6f : 0f; 
+            
             if (Mathf.Abs(angleDifference) > 5)
             {
                 yaw = -Mathf.Sign(angleDifference) * 0.4f;
