@@ -1,10 +1,13 @@
 # PFE DORI: Drone Swarm for Firefighter Rescue Operations
 DORI is a project aimed at developing a swarm of drones to aid firefighters in rescue operations during natural disasters and after war. The project is developed using Unity.
 
+<h3 align="left">Languages and Tools:</h3>
+<p align="left"> <a href="https://www.w3schools.com/cs/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> </a> <a href="https://unity.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/unity3d/unity3d-icon.svg" alt="unity" width="40" height="40"/> </a> </p>
+
 ## Requirements
 To use the project, you will need to have the following software installed:
 
-## Unity version 2021 or higher
+### Unity version 2021 or higher
 Input Manager package (can be installed using the Unity Package Manager)
 Components
 The current components of the project are:
@@ -14,6 +17,7 @@ This component simulates the functionality of a thermal camera to aid in locatin
 
 ### Simple Drone Simulation
 This component simulates the movement and control of a single drone.
+Provides GoTo function.
 
 ### Connection Simulation between Drones
 This script simulates the connection and communication between multiple drones within a building.
