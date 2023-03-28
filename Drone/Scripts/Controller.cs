@@ -41,15 +41,29 @@ namespace Dori
                 Debug.Log("Empty list");
         }
 
+           
         void Update(){
-            /* 
-            // Example code for testing purposes
-            float x = 30.0f;
-            float y = 1.0f;
-            float z = 0.0f;
-            Vector3 point = new Vector3(x, y, z);
-            GoTo_Drone(point); */
+            test_GoTo();
+        }
 
+        // Fonction de test GoToDrone
+        void test_GoTo(){
+            if(reach1 == 0){ 
+                GoTo_Drone(point1);
+                if(ReachedDestination(point1))
+                    {   Debug.Log("Drone Reached point 1" + point1);
+                        reach1 = 1;}
+               } else if(reach2 == 0 && reach1 == 1){   
+                GoTo_Drone(point2);
+                if(ReachedDestination(point2))
+                    {   Debug.Log("Drone Reached point 2" + point2);
+                        reach2 = 1;}
+            } else if(reach3 == 0 && reach2 == 1 && reach1 == 1){
+                GoTo_Drone(point3);  
+                if(ReachedDestination(point3))
+                    {   Debug.Log("Drone Reached point 3" + point3);
+                        reach3 = 1;}
+            }
         }
        
         #endregion
