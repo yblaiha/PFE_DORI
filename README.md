@@ -1,4 +1,5 @@
-# PFE DORI: Drone Swarm for Firefighter Rescue Operations
+# PFE DORI
+## Drone Swarm for Firefighter Rescue Operations
 DORI is a project aimed at developing a swarm of drones to aid firefighters in rescue operations during natural disasters and after war. The project is developed using Unity.
 
 <h3 align="left">Languages and Tools:</h3>
