@@ -70,7 +70,7 @@ namespace OctoMapSharp
             BitStream = bitStream;
         }
     }
-    
+
     public class OctoMap
     {
         /// <summary>
@@ -143,7 +143,7 @@ namespace OctoMapSharp
         private uint _nodeChildrenHighestIndex;
 
         /// <summary>
-        /// Initialise an empty OctoMap. 
+        /// Initialise an empty OctoMap.
         /// </summary>
         /// <param name="startingRootNodePosition">The starting position of the root node of the OctoMap.</param>
         /// <param name="startingRootNodeSize">The starting size of the root node of the OctoMap.</param>
@@ -615,6 +615,7 @@ namespace OctoMapSharp
                 }
             }
         }
+
 
         #endregion
 

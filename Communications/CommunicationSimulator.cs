@@ -109,10 +109,6 @@ public class CommunicationSimulator : MonoBehaviour
         // Debug drawing of impacts and material print
         if(this.DEBUG){
             print(origin.gameObject.name + "  - hits : " + hits.Count);
-            foreach ((bool,RaycastHit) h in hits){
-                Debug.DrawLine(transform.position, h.Item2.point, Color.blue);
-            }
-
             print("Went through :");
             foreach ((float,string) d in ret){
                 print(d.Item1 * 100.0f + " cm of " + d.Item2);

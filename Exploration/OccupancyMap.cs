@@ -9,12 +9,10 @@ public class OccupancyMap
     {
         Unknown = -1,
         Empty = 0,
-        Occupied = 1,
-        Frontier = 2
+        Occupied = 1
     }
 
     private Dictionary<Vector3Int,Cell> occ_map;
-    //private Dictionary<Vector3Int> frontiers;
 
     public OccupancyMap()
     {
@@ -24,13 +22,84 @@ public class OccupancyMap
     public void UpdateValue(Vector3 coords, bool value)
     {
         Vector3Int int_coords = Vector3Int.RoundToInt(coords);
-        Cell c_value = value ? isFrontier(int_coords) ? Cell.Frontier : Cell.Occupied : Cell.Empty;
-        occ_map.Add(int_coords, c_value);
+        Cell c_value = value ? Cell.Occupied : Cell.Empty;
+        if( !occ_map.ContainsKey(int_coords) || occ_map[int_coords] == Cell.Empty)
+        {
+            occ_map[int_coords] = c_value;
+        }
     }
 
-    public Vector3 GetNearestFrontier()
+    public void AddEmptyRay(Vector3 origin, Vector3 end_point, float resolution = 10)
     {
-        return new Vector3(0,0,0);
+        Vector3 dir = Vector3.Normalize(end_point - origin) / resolution;
+        for (int i = 0; i < resolution * Mathf.Round((origin - end_point).magnitude - 1); i++)
+        {
+            UpdateValue(origin + dir * i, false);
+        }
+    }
+
+    public List<Vector3Int> GetAll(){
+        return new List<Vector3Int>(occ_map.Keys);
+    }
+
+    public Cell GetValue(Vector3Int p){return occ_map[p];}
+
+    public Vector3Int GetNearestFrontier( Vector3 pos)
+    {
+        List<List<Vector3Int>> frontiers = GetFrontiers();
+        float minDist = Mathf.Infinity;
+        Vector3Int curr = Vector3Int.zero;
+        foreach(List<Vector3Int> l in frontiers)
+        {
+            foreach(Vector3Int v in l)
+            {
+                float dist = (pos - v).magnitude;
+                if( dist < minDist)
+                {
+                    minDist = dist;
+                    curr = v;
+                }
+            }
+        }
+        return curr;
+    }
+
+
+    public List<List<Vector3Int>> GetFrontiers()
+    {
+        List<List<Vector3Int>> frontier_groups = new List<List<Vector3Int>>();
+        foreach(KeyValuePair<Vector3Int,Cell> pair in occ_map)
+        {
+            if(isFrontier(pair.Key) && pair.Value == Cell.Empty)
+            {
+                List<Vector3Int> neighbours = GetNeighbours(pair.Key);
+                bool found = false;
+                foreach(List<Vector3Int> frontier in frontier_groups)
+                {
+                    foreach(Vector3Int cell in frontier)
+                    {
+                        if (neighbours.Contains(cell))
+                        {
+                            frontier.Add(pair.Key);
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if( !found)
+                {
+                    List<Vector3Int> frontier = new List<Vector3Int>();
+                    frontier.Add(pair.Key);
+                    frontier_groups.Add(frontier);
+                }
+            }
+        }
+        return frontier_groups;
+    }
+
+    public int GetCount()
+    {
+        return occ_map.Count;
     }
 
     // ValidNeighboors
