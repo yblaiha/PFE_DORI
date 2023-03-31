@@ -92,7 +92,7 @@ public class Lidar_ : MonoBehaviour
             }
         }
     }
-   
+
     void CastRays()
     {
         for (int i = 0; i < numRays; i++)
@@ -113,15 +113,12 @@ public class Lidar_ : MonoBehaviour
                     map.AddEmptyRay(transform.position/ratio, hitPoint);
                     map.UpdateValue(hitPoint, true);
                     float distance = hit.distance;
-<<<<<<< Updated upstream
-=======
                     Debug.DrawRay(transform.position, rayDirection*distance, Color.red);
                 }
                 else
                 {
                     Debug.DrawRay(transform.position, rayDirection*maxRange, Color.green);
                     map.AddEmptyRay(transform.position/ratio, transform.position/ratio + rayDirection*maxRange/ratio);
->>>>>>> Stashed changes
                 }
             }
         }

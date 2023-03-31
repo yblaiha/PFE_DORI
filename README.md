@@ -17,28 +17,26 @@ This project uses the following software and libraries. Previous or later versio
 
 ## Installation
 
-To install this package, 
+To install this package, just a few steps are needed :
 
-<<<<<<< Updated upstream
-### Unity version 2021 or higher
-Input Manager package (can be installed using the Unity Package Manager)
-Components
-The current components of the project are:
-=======
->>>>>>> Stashed changes
+1. Download this project.
+2. Open a compatible Unity Editor.
+3. Go to File > Open Project...
+4. Select your download location.
 
-### Simulation of Thermal Camera
-This component simulates the functionality of a thermal camera to aid in locating heat signatures.
+## Current contents of this version
 
-### Simple Drone Simulation
-This component simulates the movement and control of a single drone.
-Provides GoTo function.
+#### Simulation of Thermal Camera
+This part of the project simulates the functionality of a thermal camera. Add TemperatureManager.cs to all objects that need thermal rendering in the scene, then add a ThermalRenderer.cs to an object.
 
-### Connection Simulation between Drones
-This script simulates the connection and communication between multiple drones within a building.
+#### Simple Drone Simulation
+This part of the project simulates the movement and control of a single drone. Provides a GoTo function.
 
-### Usage
-To use the project, simply open the Unity project and run the scene that corresponds to the component you wish to test. The Input Manager package should already be installed, but if not, it can be installed using the Unity Package Manager.
+#### Communication Simulation between Drones
+This part of the project simulates the connection and communication between multiple drones. This simulation takes only into account absorption issues of communications, putting aside reflexion, refraction and diffraction. Allows simple simulated communications with obstacles within a building.
+
+#### LiDAR simulation
+This part of the project simulated a 3D LiDAR using raycasting and a simple occupancy map.
 
 ### Future Work
 Future components to be added to the project include:
