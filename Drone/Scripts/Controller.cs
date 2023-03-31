@@ -41,31 +41,31 @@ namespace Dori
                 Debug.Log("Empty list");
         }
 
-           
+
         void Update(){
-            test_GoTo();
+            //test_GoTo();
         }
 
         // Fonction de test GoToDrone
-        void test_GoTo(){
-            if(reach1 == 0){ 
+        /*void test_GoTo(){
+            if(reach1 == 0){
                 GoTo_Drone(point1);
                 if(ReachedDestination(point1))
                     {   Debug.Log("Drone Reached point 1" + point1);
                         reach1 = 1;}
-               } else if(reach2 == 0 && reach1 == 1){   
+               } else if(reach2 == 0 && reach1 == 1){
                 GoTo_Drone(point2);
                 if(ReachedDestination(point2))
                     {   Debug.Log("Drone Reached point 2" + point2);
                         reach2 = 1;}
             } else if(reach3 == 0 && reach2 == 1 && reach1 == 1){
-                GoTo_Drone(point3);  
+                GoTo_Drone(point3);
                 if(ReachedDestination(point3))
                     {   Debug.Log("Drone Reached point 3" + point3);
                         reach3 = 1;}
             }
-        }
-       
+        }*/
+
         #endregion
 
         #region Custom methods
@@ -79,7 +79,7 @@ namespace Dori
          // This method updates each engine component in the list of engines
         protected virtual void HandleEngines()
         {
-            // Loop through each engine 
+            // Loop through each engine
             foreach(I_Engine engine in engines)
             {
                 engine.UpdateEngine(rb , move);
@@ -93,7 +93,7 @@ namespace Dori
             float pitch = move.Cyclic.y * minMaxPitch;
             float roll =-move.Cyclic.x * minMaxRoll;
             yaw += move.Pedals * yawMax;
-            
+
             // Smoothly interpolate the pitch, roll, and yaw values
             finalPitch = Mathf.Lerp(finalPitch, pitch, Time.deltaTime * lerpSpeed);
             finalRoll = Mathf.Lerp(finalRoll, roll, Time.deltaTime * lerpSpeed);
@@ -144,11 +144,11 @@ namespace Dori
             float angleToDestination = Vector2.SignedAngle(Vector2.right, droneToDestination);
             float currentRobotAngle = Vector2.SignedAngle(Vector2.right, new Vector2(transform.forward.x, transform.forward.z));
             float angleDifference = Mathf.DeltaAngle(currentRobotAngle, angleToDestination);
-            
-            float yaw = 0f; 
+
+            float yaw = 0f;
             float roll = 0f;
             float pitch = 0f;
-            
+
             if (Mathf.Abs(angleDifference) > 5)
             {
                 yaw = -Mathf.Sign(angleDifference) * 0.4f;

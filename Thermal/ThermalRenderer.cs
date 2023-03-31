@@ -15,11 +15,11 @@ public class ThermalRenderer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ClassicCamera.SetReplacementShader(NormalShader, "RenderType");
+        ThermalCamera.SetReplacementShader(ThermalShader, "RenderType");
         ThermalCamera.backgroundColor = ColorGradient.GetPixel(0,0);
     }
 
-    public Shader GetShader(){ return ThermalShader;}
+    public Shader GetShader(){ return NormalShader;}
     public float GetSensitivity(){ return Sensitivity;}
     public Texture2D GetGradientTexture(){return ColorGradient;}
 }
