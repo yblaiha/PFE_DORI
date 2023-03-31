@@ -38,7 +38,7 @@ This part of the project simulates the connection and communication between mult
 #### LiDAR simulation
 This part of the project simulated a 3D LiDAR using raycasting and a simple occupancy map.
 
-### Future Work
+## Future Work
 Future components to be added to the project include:
 
 Mapping and navigation system for drones ( SLAM )
